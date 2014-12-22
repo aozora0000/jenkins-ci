@@ -38,3 +38,19 @@ jenkins-ci-baseをベースにphpbrewをインストールしています。
 ```
 docker build -t jenkins-ci-php ./jenkins-ci-php
 ```
+
+
+## 使い方
+- フォルダの同期
+- Workerユーザーでログイン
+
+### 例
+```start.sh
+#!/bin/sh -xe
+php ./vendor/bin/phpunit -c phpunit.xml
+```
+
+```shell
+docker run -v $WORKSPACE:/home/worker/workspace -w /home/worker/workspace \
+           -u worker -t docker-ci-php /bin/bash -l start.sh
+```
