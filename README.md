@@ -8,7 +8,7 @@ JenkinsからDockerを利用してビルド・テスト環境を作成する為�
 ## コピペ用
 ```
 docker build -t jenkins-ci-base ./jenkins-ci-base && \
-dokcer build -t jenkins-ci-php  ./jenkins-ci-php
+docker build -t jenkins-ci-php  ./jenkins-ci-php
 ```
 
 ## 内容
@@ -52,5 +52,5 @@ php ./vendor/bin/phpunit -c phpunit.xml
 
 ```shell
 docker run -v $WORKSPACE:/home/worker/workspace -w /home/worker/workspace \
-           -u worker -t docker-ci-php /bin/bash -l start.sh
+           -u worker -t jenkins-ci-php /bin/bash -l start.sh
 ```
