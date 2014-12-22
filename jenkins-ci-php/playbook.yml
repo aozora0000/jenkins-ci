@@ -13,7 +13,6 @@
           - libicu
           - libicu-devel
           - libcurl
-          - gzip2
 
     - name: phpbrewインストール
       shell: curl -L -o /usr/local/bin/phpbrew https://github.com/phpbrew/phpbrew/raw/master/phpbrew && chmod +x /usr/local/bin/phpbrew
