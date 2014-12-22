@@ -1,0 +1,16 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  sudo: true
+  tasks:
+    - name: Dockerインストール
+      yum: name=docker-io state=latest
+
+    - name: DockerDNS設定
+      shell: echo 'other_args="-dns=8.8.8.8"' > /etc/sysconfig/docker
+
+    - name: Dockerサービス起動
+      service: name=docker enabled=yes state=started
+
+    - name: Docker再起動(DNS設定の読み込み)
+      service: name=docker state=restarted
