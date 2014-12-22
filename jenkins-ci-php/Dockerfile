@@ -11,14 +11,14 @@ RUN chmod 777 /etc/profile.d
 USER worker
 RUN phpbrew init
 RUN source ~/.phpbrew/bashrc
-RUN echo "source /home/worker/.phpbrew/bashrc" > /etc/profile.d/phpbrew
-RUN (phpbrew install 5.3.29) & \
-    (phpbrew install 5.4.36) & \
-    (phpbrew install 5.5.20) & \
-    (phpbrew install 5.6.4)
+RUN echo "source /home/worker/.phpbrew/bashrc" > /home/worker/.bashrc
+RUN (phpbrew install 5.3.29 +default+xdebug) & \
+    (phpbrew install 5.4.36 +default+xdebug) & \
+    (phpbrew install 5.5.20 +default+xdebug) & \
+    (phpbrew install 5.6.3  +default+xdebug)
 
 RUN ls ~/.phpbrew/php/php-*/etc/php.ini  | xargs sed -i "s/\;date\.timezone\ \=/date\.timezone\ \=\ Asia\/Tokyo/g"
-RUN source ~/.phpbrew/bashrc
+RUN source /home/worker/.phpbrew/bashrc
 RUN phpbrew switch 5.4.36 || true
 
 #################################
